@@ -11,6 +11,7 @@ namespace API_Proyecto_DAWA.Context
         }
 
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Proveedor> Proveedores { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

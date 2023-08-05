@@ -55,15 +55,23 @@ namespace API_Proyecto_DAWA.Repository
             }
             else
             {
-                throw new InvalidOperationException("La entidad con el Id especificado no existe en el contexto.");
+                throw new InvalidOperationException("El Usuario con el Id especificado no existe en el contexto.");
             }
         }
 
         public async Task Delete(int id)
         {
-            var usuarioToDelete = await _context.Usuarios.FirstOrDefaultAsync(x => x.Id == id);
-            _context.Usuarios.Remove(usuarioToDelete);
-            await _context.SaveChangesAsync();
+            var existingUser = await _context.Usuarios.FindAsync(id);
+
+            if (existingUser != null)
+            {
+                _context.Usuarios.Remove(existingUser);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                throw new InvalidOperationException("El Usuario con el Id especificado no existe en el contexto.");
+            }
         }
 
         public async Task<bool> SaveChanges()
