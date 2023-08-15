@@ -8,6 +8,7 @@ namespace API_Proyecto_DAWA.Repository
     {
         Task<List<Proveedor>> GetAll();
         Task<Proveedor> GetById(int id);
+        Task<Proveedor> GetByCode(string code);
         Task<Proveedor> Create(Proveedor proveedor);
         Task<Proveedor> Update(Proveedor proveedor);
         Task Delete(int id);
@@ -32,6 +33,12 @@ namespace API_Proyecto_DAWA.Repository
         public async Task<Proveedor> GetById(int id)
         {
             Proveedor proveedor = await _context.Proveedores.FirstOrDefaultAsync(x => x.Id == id);
+            return proveedor;
+        }
+
+        public async Task<Proveedor> GetByCode(string code)
+        {
+            Proveedor proveedor = await _context.Proveedores.FirstOrDefaultAsync(x => x.Codigo == code);
             return proveedor;
         }
 

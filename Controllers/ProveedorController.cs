@@ -34,6 +34,17 @@ namespace API_Proyecto_DAWA.Controllers
             return Ok(proveedor);
         }
 
+        [HttpGet("codigo/{codigo}")]
+        public async Task<IActionResult> ObtenerProveedorPorCodigo(string codigo)
+        {
+            var proveedor = await _proveedorRepository.GetByCode(codigo);
+            if (proveedor == null)
+            {
+                return NotFound("Proveedor no Encontrado");
+            }
+            return Ok(proveedor);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CrearProveedor([FromBody] Proveedor proveedor)
         {

@@ -26,7 +26,7 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddScoped<I_UsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<I_ProveedorRepository, ProveedorRepository>();
-
+builder.Services.AddScoped<I_ClienteRepository, ClienteRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
