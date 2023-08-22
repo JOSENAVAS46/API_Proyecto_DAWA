@@ -88,7 +88,7 @@ namespace API_Proyecto_DAWA.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> ActualizarProducto(int id, [FromBody] Producto producto)
         {
-            if (id != producto.IdProducto)
+            if (id != producto.Id)
             {
                 return BadRequest("El Id del producto no coincide con el Id de la URL.");
             }
@@ -114,7 +114,7 @@ namespace API_Proyecto_DAWA.Controllers
                 return NotFound("Producto no Encontrado");
             }
 
-            await _productoRepository.Delete(producto.IdProducto);
+            await _productoRepository.Delete(producto.Id);
             return Ok("Producto Eliminado");
         }
 
@@ -122,7 +122,7 @@ namespace API_Proyecto_DAWA.Controllers
         public async Task<IActionResult> ObtenerProductosPorIdCategoria(int idcategoria)
         {
             var productos = await _context.Productos
-                .Where(p => p.CategoriaId == idcategoria)
+                .Where(p => p.Categoria.Id == idcategoria)
                 .ToListAsync();
 
             if (productos == null || productos.Count == 0)

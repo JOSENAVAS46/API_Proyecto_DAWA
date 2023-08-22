@@ -45,7 +45,7 @@ namespace API_Proyecto_DAWA.Repository
         {
             Producto producto = await _context.Productos
                 .Include(p => p.Categoria)
-                .FirstOrDefaultAsync(x => x.IdProducto == id);
+                .FirstOrDefaultAsync(x => x.Id == id);
             return producto;
         }
         public async Task<Producto> GetByNombre(string Nombre)
@@ -75,7 +75,7 @@ namespace API_Proyecto_DAWA.Repository
 
         public async Task<Producto> Update(Producto producto)
         {
-            var existingProducto = await _context.Productos.FindAsync(producto.IdProducto);
+            var existingProducto = await _context.Productos.FindAsync(producto.Id);
 
             if (existingProducto != null)
             {

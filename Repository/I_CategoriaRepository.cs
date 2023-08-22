@@ -35,7 +35,7 @@ namespace API_Proyecto_DAWA.Repository
 
         public async Task<Categoria> GetById(int id)
         {
-            Categoria categoria = await _context.Categorias.FirstOrDefaultAsync(x => x.IdCategoria == id);
+            Categoria categoria = await _context.Categorias.FirstOrDefaultAsync(x => x.Id == id);
             return categoria;
         }
 
@@ -48,7 +48,7 @@ namespace API_Proyecto_DAWA.Repository
 
         public async Task<Categoria> Update(Categoria categoria)
         {
-            var existingCategoria = await _context.Categorias.FindAsync(categoria.IdCategoria);
+            var existingCategoria = await _context.Categorias.FindAsync(categoria.Id);
 
             if (existingCategoria != null)
             {

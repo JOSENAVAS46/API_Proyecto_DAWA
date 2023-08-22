@@ -51,7 +51,7 @@ namespace API_Proyecto_DAWA.Controllers
                 return NotFound("Categoría no Encontrada");
             }
 
-            var productos = _context.Productos.Where(p => p.CategoriaId == id).ToList();
+            var productos = _context.Productos.Where(p => p.Categoria.Id == id).ToList();
             return Ok(productos);
         }
 
@@ -70,7 +70,7 @@ namespace API_Proyecto_DAWA.Controllers
             [HttpPut("{id}")]
             public async Task<IActionResult> ActualizarCategoria(int id, [FromBody] Categoria categoria)
             {
-                if (id != categoria.IdCategoria)
+                if (id != categoria.Id)
                 {
                     return BadRequest("El Id de la categoría no coincide con el Id de la URL.");
                 }
@@ -95,7 +95,7 @@ namespace API_Proyecto_DAWA.Controllers
                     return NotFound("Categoría no Encontrada");
                 }
 
-                await _categoriaRepository.Delete(categoria.IdCategoria);
+                await _categoriaRepository.Delete(categoria.Id);
                 return Ok("Categoría Eliminada");
             }
         }

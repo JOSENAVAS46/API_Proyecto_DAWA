@@ -22,9 +22,9 @@ namespace API_Proyecto_DAWA.Context
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Categoria>().HasKey(c => c.IdCategoria);// Definir clave primaria para Categoria
+            modelBuilder.Entity<Categoria>().HasKey(c => c.Id);// Definir clave primaria para Categoria
 
-            modelBuilder.Entity<Categoria>().Property(c => c.IdCategoria).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Categoria>().Property(c => c.Id).ValueGeneratedOnAdd();
 
             modelBuilder.Entity<Producto>()
         .Property(p => p.PrecioUnitario)
