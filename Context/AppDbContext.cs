@@ -13,9 +13,23 @@ namespace API_Proyecto_DAWA.Context
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Proveedor> Proveedores { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Categoria> Categorias { get; set; }
+        public DbSet<Producto> Productos { get; set; }
+
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Categoria>().HasKey(c => c.IdCategoria);// Definir clave primaria para Categoria
+
+            modelBuilder.Entity<Categoria>().Property(c => c.IdCategoria).ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Producto>()
+        .Property(p => p.PrecioUnitario)
+        .HasColumnType("decimal(18, 2)"); // Cambia el tamaño y escala según tus necesidades
+
 
         }
 
